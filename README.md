@@ -17,7 +17,7 @@ Projet réalisé dans le cours Circuits électroniques III au Collège de Maison
 | Élément | Détail |
 |---|---|
 | Microcontrôleur | STM32 NUCLEO-F072RB |
-| Convertisseur | ADS112C04 (24 bits, I²C) |
+| Convertisseur | ADS112C04 (16 bits, I²C) |
 | Capteurs | Deux jauges de contrainte |
 | Écran | OLED SSD1306 (I²C) |
 | Alimentation | 12 V |
