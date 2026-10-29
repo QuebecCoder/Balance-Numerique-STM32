@@ -1,16 +1,16 @@
 # Balance numérique (STM32F072)
 
-Balance à deux jauges de contrainte avec affichage OLED, tare et changement d'unité (g / oz).
+Balance à deux jauges de contrainte avec affichage OLED, tare et choix des décimales.
 
 Projet réalisé dans le cours Circuits électroniques III au Collège de Maisonneuve, avec Frédéric Le Nabec.
 
 ## Fonctionnement
 
-- Les deux jauges de contrainte sont lues par un convertisseur ADS112C04 (24 bits, I²C), à 1000 échantillons/s avec un gain de 64.
+- Les deux jauges de contrainte sont lues par un convertisseur ADS112C04 (16 bits, I²C), à 1000 échantillons/s avec un gain de 64.
 - Au démarrage, l'offset de chaque jauge est mesuré à vide puis soustrait de chaque lecture.
-- Les lectures sont moyennées pour réduire le bruit, puis converties en grammes ou en onces.
+- Les lectures sont moyennées pour réduire le bruit, puis converties en grammes.
 - Le résultat est affiché sur un écran OLED SSD1306.
-- Deux boutons permettent de faire la tare et de changer d'unité.
+- Deux boutons permettent de faire la tare et d'afficher la mesure avec ou sans décimale.
 
 ## Matériel
 
@@ -37,7 +37,8 @@ Projet réalisé dans le cours Circuits électroniques III au Collège de Maison
 
 1. Ouvrir STM32CubeIDE.
 2. **File → Import → Existing Projects into Workspace**, puis choisir ce dossier.
-3. Compiler et téléverser sur la carte NUCLEO.
+3. Ouvrir `Balance.ioc`, puis **Project → Generate Code** pour recréer le dossier `Drivers/` (bibliothèques HAL et CMSIS de ST, non incluses dans le dépôt).
+4. Compiler et téléverser sur la carte NUCLEO.
 
 La configuration des périphériques est dans `Balance.ioc` (STM32CubeMX).
 
@@ -50,7 +51,7 @@ Core/Src/usermain.c       boucle principale de la balance
 Core/Src/fonctions_perso.c  affichage et fonctions utilitaires
 Core/Src/ads112c04_*.c    pilote du convertisseur ADS112C04
 Core/Src/ssd1306*.c       pilote de l'écran OLED
-Drivers/                  bibliothèques HAL et CMSIS de ST
+Drivers/                  bibliothèques de ST, recréées par Generate Code
 ```
 
 ## Résultat
